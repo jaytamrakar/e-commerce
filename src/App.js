@@ -3,6 +3,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./App.css";
 
+import Protected from "./features/auth/components/Protected";
+
 import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
@@ -13,7 +15,11 @@ import ProductDetailPage from "./pages/ProductDetailPage";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <Protected>
+        <Home />
+      </Protected>
+    ),
   },
   {
     path: "login",
@@ -25,15 +31,27 @@ const router = createBrowserRouter([
   },
   {
     path: "cart",
-    element: <CartPage />,
+    element: (
+      <Protected>
+        <CartPage />
+      </Protected>
+    ),
   },
   {
     path: "checkout",
-    element: <Checkout />,
+    element: (
+      <Protected>
+        <Checkout />
+      </Protected>
+    ),
   },
   {
     path: "product-detail/:id",
-    element: <ProductDetailPage />,
+    element: (
+      <Protected>
+        <ProductDetailPage />
+      </Protected>
+    ),
   },
 ]);
 
