@@ -1,18 +1,14 @@
-import React from 'react';
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import './App.css';
-import Home from './pages/Home';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import CartPage from './pages/CartPage';
+import "./App.css";
 
-import Cart from './features/cart/Cart';
-import Checkout from './pages/Checkout';
-
+import Home from "./pages/Home";
+import LoginPage from "./pages/LoginPage";
+import SignupPage from "./pages/SignupPage";
+import CartPage from "./pages/CartPage";
+import Checkout from "./pages/Checkout";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: "checkout",
     element: <Checkout />,
+  },
+  {
+    path: "product-detail",
+    element: <ProductDetailPage />,
   },
 ]);
 
