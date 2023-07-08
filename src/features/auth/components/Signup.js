@@ -1,16 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 
-import { createUserAsync } from "../authSlice";
-import { Link } from "react-router-dom";
+import { createUserAsync, selectLoggedInUser } from "../authSlice";
+import { Link, Navigate } from "react-router-dom";
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const user = useSelector(selectLoggedInUser);
+
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
@@ -18,7 +19,8 @@ const Signup = () => {
     dispatch(createUserAsync({ email: data.email, password: data.password }));
 
   return (
-    <div>
+    <>
+      {user && <Navigate to="/" replace={true} />}
       <div>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -33,7 +35,11 @@ const Signup = () => {
           </div>
 
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
+            <form
+              noValidate
+              className="space-y-6"
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <div>
                 <label
                   htmlFor="email"
@@ -73,7 +79,7 @@ const Signup = () => {
                   <input
                     id="password"
                     {...register("password", {
-                      required: "password id required",
+                      required: "password is required",
                       pattern: {
                         value:
                           /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
@@ -141,7 +147,7 @@ const Signup = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
