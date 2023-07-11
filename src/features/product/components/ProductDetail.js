@@ -44,7 +44,9 @@ export default function ProductDetail() {
 
   const handleCart = (e) => {
     e.preventDefault();
-    dispatch(addToCartAsync({ ...product, quantity: 1, user: user.id }));
+    const newItem = { ...product, quantity: 1, user: user.id };
+    delete newItem["id"];
+    dispatch(addToCartAsync(newItem));
   };
 
   useEffect(() => {
@@ -57,12 +59,11 @@ export default function ProductDetail() {
         <div className="pt-6">
           <nav aria-label="Breadcrumb">
             <ol
-              role="list"
               className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8"
             >
               {product.breadcrumbs &&
-                product.breadcrumbs.map((breadcrumb) => (
-                  <li key={breadcrumb.id}>
+                product.breadcrumbs.map((breadcrumb, index) => (
+                  <li key={index}>
                     <div className="flex items-center">
                       <a
                         href={breadcrumb.href}
@@ -149,9 +150,9 @@ export default function ProductDetail() {
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
                   <div className="flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating) => (
+                    {[0, 1, 2, 3, 4].map((rating, index) => (
                       <StarIcon
-                        key={rating}
+                        key={index}
                         className={classNames(
                           product.rating > rating
                             ? "text-gray-900"
@@ -180,9 +181,9 @@ export default function ProductDetail() {
                       Choose a color
                     </RadioGroup.Label>
                     <div className="flex items-center space-x-3">
-                      {colors.map((color) => (
+                      {colors.map((color, index) => (
                         <RadioGroup.Option
-                          key={color.name}
+                          key={index}
                           value={color}
                           className={({ active, checked }) =>
                             classNames(
@@ -213,12 +214,11 @@ export default function ProductDetail() {
                 <div className="mt-10">
                   <div className="flex items-center justify-between">
                     <h3 className="text-sm font-medium text-gray-900">Size</h3>
-                    <a
-                      href="#"
+                    <div
                       className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
                     >
                       Size guide
-                    </a>
+                    </div>
                   </div>
 
                   <RadioGroup
@@ -230,9 +230,9 @@ export default function ProductDetail() {
                       Choose a size
                     </RadioGroup.Label>
                     <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                      {sizes.map((size) => (
+                      {sizes.map((size, index) => (
                         <RadioGroup.Option
-                          key={size.name}
+                          key={index}
                           value={size}
                           disabled={!size.inStock}
                           className={({ active }) =>
@@ -318,9 +318,9 @@ export default function ProductDetail() {
                 </h3>
 
                 <div className="mt-4">
-                  <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                    {highlights.map((highlight) => (
-                      <li key={highlight} className="text-gray-400">
+                  <ul className="list-disc space-y-2 pl-4 text-sm">
+                    {highlights.map((highlight, index) => (
+                      <li key={index} className="text-gray-400">
                         <span className="text-gray-600">{highlight}</span>
                       </li>
                     ))}

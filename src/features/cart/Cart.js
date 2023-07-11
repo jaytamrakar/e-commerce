@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteItemFromCartAsync,
   selectItems,
   updateCartAsync,
 } from "./cartSlice";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 export default function Cart() {
   const items = useSelector(selectItems);
@@ -27,6 +27,8 @@ export default function Cart() {
 
   return (
     <>
+      {!items.length && <Navigate to="/" replace={true} />}
+
       <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
           <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900 ">
@@ -34,9 +36,9 @@ export default function Cart() {
           </h1>
 
           <div className="flow-root">
-            <ul role="list" className="-my-6 divide-y divide-gray-200">
-              {items.map((item) => (
-                <li key={item.id} className="flex py-6">
+            <ul className="-my-6 divide-y divide-gray-200">
+              {items.map((item, index) => (
+                <li key={index} className="flex py-6">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <img
                       src={item.thumbnail}

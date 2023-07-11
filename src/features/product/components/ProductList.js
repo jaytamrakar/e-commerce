@@ -15,9 +15,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { ITEMS_PER_PAGE } from "../../../app/constants";
 import {
-  increment,
   selectAllProducts,
-  fetchAllProductsAsync,
   fetchProductsByFiltersAsync,
   selectTotalItems,
   fetchBrandsAsync,
@@ -92,7 +90,6 @@ export default function ProductList() {
 
   useEffect(() => {
     const pagination = { _page: page, _limit: ITEMS_PER_PAGE };
-    console.log({ pagination });
     dispatch(fetchProductsByFiltersAsync({ filter, sort, pagination }));
   }, [dispatch, filter, sort, page]);
 
@@ -103,7 +100,7 @@ export default function ProductList() {
   useEffect(() => {
     dispatch(fetchBrandsAsync());
     dispatch(fetchCategoriesAsync());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -145,8 +142,8 @@ export default function ProductList() {
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1">
-                        {sortOptions.map((option) => (
-                          <Menu.Item key={option.name}>
+                        {sortOptions.map((option, index) => (
+                          <Menu.Item key={index}>
                             {({ active }) => (
                               <p
                                 onClick={(event) => handleSort(event, option)}
@@ -269,10 +266,10 @@ function MobileFilter({
                 <form className="mt-4 border-t border-gray-200">
                   <h3 className="sr-only">Categories</h3>
 
-                  {filters.map((section) => (
+                  {filters.map((section, index) => (
                     <Disclosure
                       as="div"
-                      key={section.id}
+                      key={index}
                       className="border-t border-gray-200 px-4 py-6"
                     >
                       {({ open }) => (
@@ -299,13 +296,10 @@ function MobileFilter({
                           </h3>
                           <Disclosure.Panel className="pt-6">
                             <div className="space-y-6">
-                              {section.options.map((option, optionIdx) => (
-                                <div
-                                  key={option.value}
-                                  className="flex items-center"
-                                >
+                              {section.options.map((option, index) => (
+                                <div key={index} className="flex items-center">
                                   <input
-                                    id={`filter-mobile-${section.id}-${optionIdx}`}
+                                    id={`filter-mobile-${section.id}-${index}`}
                                     name={`${section.id}[]`}
                                     defaultValue={option.value}
                                     type="checkbox"
@@ -316,7 +310,7 @@ function MobileFilter({
                                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   />
                                   <label
-                                    htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
+                                    htmlFor={`filter-mobile-${section.id}-${index}`}
                                     className="ml-3 min-w-0 flex-1 text-gray-500"
                                   >
                                     {option.label}
@@ -344,10 +338,10 @@ function DesktopFilter({ handleFilter, filters }) {
       <form className="hidden lg:block">
         <h3 className="sr-only">Categories</h3>
 
-        {filters.map((section) => (
+        {filters.map((section, index) => (
           <Disclosure
             as="div"
-            key={section.id}
+            key={index}
             className="border-b border-gray-200 py-6"
           >
             {({ open }) => (
@@ -368,10 +362,10 @@ function DesktopFilter({ handleFilter, filters }) {
                 </h3>
                 <Disclosure.Panel className="pt-6">
                   <div className="space-y-4">
-                    {section.options.map((option, optionIdx) => (
-                      <div key={option.value} className="flex items-center">
+                    {section.options.map((option, index) => (
+                      <div key={index} className="flex items-center">
                         <input
-                          id={`filter-${section.id}-${optionIdx}`}
+                          id={`filter-${section.id}-${index}`}
                           name={`${section.id}[]`}
                           defaultValue={option.value}
                           type="checkbox"
@@ -380,7 +374,7 @@ function DesktopFilter({ handleFilter, filters }) {
                           className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                         />
                         <label
-                          htmlFor={`filter-${section.id}-${optionIdx}`}
+                          htmlFor={`filter-${section.id}-${index}`}
                           className="ml-3 text-sm text-gray-600"
                         >
                           {option.label}
@@ -403,12 +397,9 @@ function ProductGrid({ products }) {
       <div className="bg-white">
         <div className="mx-auto max-w-2xl px-4 py-0 sm:px-6 sm:py-0 lg:max-w-7xl lg:px-8">
           <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
-            {products.map((product) => (
-              <Link to={`/product-detail/${product.id}`}>
-                <div
-                  key={product.id}
-                  className="group relative p-2 border-solid border-2 border-gray-200 "
-                >
+            {products.map((product, index) => (
+              <Link to={`/product-detail/${product.id}`} key={index}>
+                <div className="group relative p-2 border-solid border-2 border-gray-200 ">
                   <div className="min-h-60 aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-60">
                     <img
                       src={product.thumbnail}
@@ -505,6 +496,7 @@ function Pagination({ page, setPage, handlePage, totalItems }) {
 
             {Array.from({ length: totalPages }).map((el, index) => (
               <div
+                key={index}
                 onClick={(e) => handlePage(index + 1)}
                 aria-current="page"
                 className={`relative z-10 inline-flex items-center cursor-pointer ${
