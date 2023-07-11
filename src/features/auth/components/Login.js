@@ -17,7 +17,6 @@ const Login = () => {
 
   const onSubmit = (data) => {
     dispatch(checkUserAsync({ email: data.email, password: data.password }));
-    console.log({ data });
   };
 
   return (
