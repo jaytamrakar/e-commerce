@@ -50,3 +50,17 @@ export function deleteItemFromCart(itemId) {
     resolve({ data: { id: itemId } });
   });
 }
+
+export function resetCart(userId) {
+  //  get all the items of user and then delet each of them
+  return new Promise(async (resolve) => {
+    const response = await fetchItemsByUserId(userId);
+    console.log(response);
+    const items = response.data;
+    for (let item of items) {
+      await deleteItemFromCart(item.id);
+    }
+    // TODO : on server it will return only some relevant data not password
+    resolve({ status: "success" });
+  });
+}

@@ -11,11 +11,15 @@ import {
   selectLoggedInUser,
   updateUserAsync,
 } from "../features/auth/authSlice";
-import { createOrderAsync } from "../features/order/orderSlice";
+import {
+  createOrderAsync,
+  selectCurrentOrder,
+} from "../features/order/orderSlice";
 
 const Checkout = () => {
   const items = useSelector(selectItems);
   const user = useSelector(selectLoggedInUser);
+  const currentOrder = useSelector(selectCurrentOrder);
 
   const dispatch = useDispatch();
   const {
@@ -60,15 +64,21 @@ const Checkout = () => {
   };
 
   const handleOrder = (e) => {
-    const order = {
-      items,
-      totalAmount,
-      totalItems,
-      user,
-      paymentMethod,
-      selectedAddress,
-    };
-    dispatch(createOrderAsync(order));
+    if (selectedAddress && paymentMethod) {
+      const order = {
+        items,
+        totalAmount,
+        totalItems,
+        user,
+        paymentMethod,
+        selectedAddress,
+        status: "pending", // other status can be delivered , receved .
+      };
+      dispatch(createOrderAsync(order));
+      // need to redirect from the new page of order order success .
+    } else {
+      alert("Enter address and payment method");
+    }
     // TODO : redirect to order success page
     // TODO : clear cart after order successful
     // TODO : on server change the order status or stock status
@@ -77,6 +87,9 @@ const Checkout = () => {
   return (
     <>
       {!items.length && <Navigate to="/" replace={true} />}
+      {currentOrder && (
+        <Navigate to={`/order-success/${currentOrder.id}`} replace={true} />
+      )}
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-5">
