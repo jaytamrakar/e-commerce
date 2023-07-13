@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchLoggedInUserOrdersAsync,
@@ -14,7 +14,7 @@ export default function UserOrders() {
 
   useEffect(() => {
     dispatch(fetchLoggedInUserOrdersAsync(user.id));
-  }, [dispatch]);
+  }, [dispatch, user]);
 
   return (
     <>
