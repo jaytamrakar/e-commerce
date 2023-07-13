@@ -1,4 +1,3 @@
-// A mock function to mimic making an async request for data
 export function createUser(userData) {
   return new Promise(async (resolve) => {
     const response = await fetch(`http://localhost:8080/users`, {
@@ -31,5 +30,13 @@ export function checkUser(loginInfo) {
       reject({ message: "user not found" });
     }
     // TODO : on server it will return only some relevant data not password
+  });
+}
+
+export function signOut(userId) {
+  return new Promise(async (resolve) => {
+    
+    // TODO : on server we will remove user session info
+    resolve({ data: "success" });
   });
 }

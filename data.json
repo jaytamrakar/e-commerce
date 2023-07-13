@@ -2014,23 +2014,180 @@
   "users": [
     {
       "email": "jay@gmail.com",
-      "password": "JayJay12",
+      "password": "abc",
+      "addresses": [
+        {
+          "name": "jay narayan",
+          "email": "jay@gmail.com",
+          "phone": "9876543210",
+          "street": "1100 D , North",
+          "city": "Singrauli",
+          "state": "Madhyapredesh",
+          "pinCode": "486886"
+        },
+        {
+          "name": "jay nrevetbvtgrbgbg",
+          "email": "admin@gmail.com",
+          "phone": "453453434564545",
+          "street": "fefefefev",
+          "city": "jhmujm",
+          "state": "mjuhmjh,",
+          "pinCode": "5654676"
+        }
+      ],
+      "id": 1
+    }
+  ],
+  "cart": [
+    {
+      "title": "OPPOF19",
+      "description": "OPPO F19 is officially announced on April 2021.",
+      "price": 280,
+      "discountPercentage": 17.91,
+      "rating": 4.3,
+      "stock": 123,
+      "brand": "OPPO",
+      "category": "smartphones",
+      "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/4/1.jpg",
+        "https://i.dummyjson.com/data/products/4/2.jpg",
+        "https://i.dummyjson.com/data/products/4/3.jpg",
+        "https://i.dummyjson.com/data/products/4/4.jpg",
+        "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 1,
+      "id": 1
+    }
+  ],
+  "orders": [
+    {
+      "items": [
+        {
+          "title": "iPhone 9",
+          "description": "An apple mobile which is nothing like apple",
+          "price": 549,
+          "discountPercentage": 12.96,
+          "rating": 4.69,
+          "stock": 94,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/1/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/1/1.jpg",
+            "https://i.dummyjson.com/data/products/1/2.jpg",
+            "https://i.dummyjson.com/data/products/1/3.jpg",
+            "https://i.dummyjson.com/data/products/1/4.jpg",
+            "https://i.dummyjson.com/data/products/1/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalAmount": 549,
+      "totalItems": 1,
+      "user": {
+        "email": "jay@gmail.com",
+        "password": "abc",
+        "addresses": [
+          {
+            "name": "jay",
+            "email": "jay@gmail.com",
+            "phone": "9876543210",
+            "street": "1100 D , North",
+            "city": "Singrauli",
+            "state": "Madhyapredesh",
+            "pinCode": "486886"
+          },
+          {
+            "name": "admin",
+            "email": "admin@gmail.com",
+            "phone": "45345343",
+            "street": "jyhmuhj 56",
+            "city": "jhmujm",
+            "state": "mjuhmjh,",
+            "pinCode": "5654676"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "admin",
+        "email": "admin@gmail.com",
+        "phone": "45345343",
+        "street": "jyhmuhj 56",
+        "city": "jhmujm",
+        "state": "mjuhmjh,",
+        "pinCode": "5654676"
+      },
+      "status": "pending",
       "id": 1
     },
     {
-      "email": "jay@gmail.com",
-      "password": "JayJay12",
+      "items": [
+        {
+          "title": "HP Pavilion 15-DK1056WM",
+          "description": "HP Pavilion 15-DK1056WM Gaming Laptop 10th Gen Core i5, 8GB, 256GB SSD, GTX 1650 4GB, Windows 10",
+          "price": 1099,
+          "discountPercentage": 6.18,
+          "rating": 4.43,
+          "stock": 89,
+          "brand": "HP Pavilion",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/10/thumbnail.jpeg",
+          "images": [
+            "https://i.dummyjson.com/data/products/10/1.jpg",
+            "https://i.dummyjson.com/data/products/10/2.jpg",
+            "https://i.dummyjson.com/data/products/10/3.jpg",
+            "https://i.dummyjson.com/data/products/10/thumbnail.jpeg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalAmount": 1099,
+      "totalItems": 1,
+      "user": {
+        "email": "jay@gmail.com",
+        "password": "abc",
+        "addresses": [
+          {
+            "name": "jay",
+            "email": "jay@gmail.com",
+            "phone": "9876543210",
+            "street": "1100 D , North",
+            "city": "Singrauli",
+            "state": "Madhyapredesh",
+            "pinCode": "486886"
+          },
+          {
+            "name": "admin",
+            "email": "admin@gmail.com",
+            "phone": "45345343",
+            "street": "jyhmuhj 56",
+            "city": "jhmujm",
+            "state": "mjuhmjh,",
+            "pinCode": "5654676"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "admin",
+        "email": "admin@gmail.com",
+        "phone": "45345343",
+        "street": "jyhmuhj 56",
+        "city": "jhmujm",
+        "state": "mjuhmjh,",
+        "pinCode": "5654676"
+      },
+      "status": "pending",
       "id": 2
-    },
-    {
-      "email": "jay@gmail.com",
-      "password": "JayJay12",
-      "id": 3
-    },
-    {
-      "email": "jay@gmail.com",
-      "password": "JayJay12",
-      "id": 4
     }
   ]
 }
