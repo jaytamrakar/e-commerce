@@ -22,8 +22,8 @@ const navigation = [
 ];
 
 const userNavigation = [
-  { name: "Your Profile", link: "/" },
-  { name: "Settings", link: "/" },
+  { name: "My Profile", link: "/profile" },
+  { name: "My Orders", link: "/orders" },
   { name: "Sign out", link: "/login" },
 ];
 
@@ -117,7 +117,7 @@ const NavBar = ({ children }) => {
                               <Menu.Item key={index}>
                                 {({ active }) => (
                                   <Link
-                                    to={item.Link}
+                                    to={item.link}
                                     className={classNames(
                                       active ? "bg-gray-100" : "",
                                       "block px-4 py-2 text-sm text-gray-700"
@@ -131,7 +131,7 @@ const NavBar = ({ children }) => {
                           </Menu.Items>
                         </Transition>
                       </Menu>
-                    </div>
+                    </div>  
                   </div>
                   <div className="-mr-2 flex md:hidden">
                     {/* Mobile menu button */}
