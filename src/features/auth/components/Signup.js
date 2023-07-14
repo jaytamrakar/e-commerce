@@ -21,6 +21,8 @@ const Signup = () => {
         email: data.email,
         password: data.password,
         addresses: [],
+        role: "user",
+        // TODO : role can be directly given by rhe backend
       })
     );
 
