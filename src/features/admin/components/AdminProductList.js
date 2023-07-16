@@ -13,7 +13,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "@heroicons/react/20/solid";
-import { ITEMS_PER_PAGE } from "../../../app/constants";
+import { ITEMS_PER_PAGE, discountedPrice } from "../../../app/constants";
 import {
   selectAllProducts,
   fetchProductsByFiltersAsync,
@@ -436,11 +436,7 @@ function ProductGrid({ products }) {
                       </div>
                       <div>
                         <p className="text-sm block font-medium text-gray-900">
-                          ${" "}
-                          {Math.round(
-                            product.price *
-                              (1 - product.discountPercentage / 100)
-                          )}
+                          $ {discountedPrice(product)}
                         </p>
 
                         <p className="text-sm block font-medium line-through text-gray-400">

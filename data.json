@@ -2090,6 +2090,15 @@
           "city": "jhmujm",
           "state": "mjuhmjh,",
           "pinCode": "5654676"
+        },
+        {
+          "name": "tailwind",
+          "email": "tailwind@gmail.com",
+          "phone": "342234242",
+          "street": "11 b , north easte ",
+          "city": "metro",
+          "state": "politin",
+          "pinCode": "3423423"
         }
       ],
       "id": 1
@@ -2102,29 +2111,7 @@
       "id": 2
     }
   ],
-  "cart": [
-    {
-      "title": "OPPOF19",
-      "description": "OPPO F19 is officially announced on April 2021.",
-      "price": 280,
-      "discountPercentage": 17.91,
-      "rating": 4.3,
-      "stock": 123,
-      "brand": "OPPO",
-      "category": "smartphones",
-      "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
-      "images": [
-        "https://i.dummyjson.com/data/products/4/1.jpg",
-        "https://i.dummyjson.com/data/products/4/2.jpg",
-        "https://i.dummyjson.com/data/products/4/3.jpg",
-        "https://i.dummyjson.com/data/products/4/4.jpg",
-        "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
-      ],
-      "quantity": 1,
-      "user": 1,
-      "id": 1
-    }
-  ],
+  "cart": [],
   "orders": [
     {
       "items": [
@@ -2187,7 +2174,7 @@
         "state": "mjuhmjh,",
         "pinCode": "5654676"
       },
-      "status": "pending",
+      "status": "cancelled",
       "id": 1
     },
     {
@@ -2250,8 +2237,168 @@
         "state": "mjuhmjh,",
         "pinCode": "5654676"
       },
-      "status": "pending",
+      "status": "dispatched",
       "id": 2
+    },
+    {
+      "items": [
+        {
+          "title": "OPPOF19",
+          "description": "OPPO F19 is officially announced on April 2021.",
+          "price": 280,
+          "discountPercentage": 17.91,
+          "rating": 4.3,
+          "stock": 123,
+          "brand": "OPPO",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/4/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/4/1.jpg",
+            "https://i.dummyjson.com/data/products/4/2.jpg",
+            "https://i.dummyjson.com/data/products/4/3.jpg",
+            "https://i.dummyjson.com/data/products/4/4.jpg",
+            "https://i.dummyjson.com/data/products/4/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalAmount": 230,
+      "totalItems": 1,
+      "user": {
+        "email": "jay@gmail.com",
+        "password": "abc",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "jay narayan",
+            "email": "jay@gmail.com",
+            "phone": "9876543210",
+            "street": "1100 D , North",
+            "city": "Singrauli",
+            "state": "Madhyapredesh",
+            "pinCode": "486886"
+          },
+          {
+            "name": "jay nrevetbvtgrbgbg",
+            "email": "admin@gmail.com",
+            "phone": "453453434564545",
+            "street": "fefefefev",
+            "city": "jhmujm",
+            "state": "mjuhmjh,",
+            "pinCode": "5654676"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "jay narayan",
+        "email": "jay@gmail.com",
+        "phone": "9876543210",
+        "street": "1100 D , North",
+        "city": "Singrauli",
+        "state": "Madhyapredesh",
+        "pinCode": "486886"
+      },
+      "status": "delivered",
+      "id": 3
+    },
+    {
+      "items": [
+        {
+          "title": "Infinix INBOOK",
+          "description": "Infinix Inbook X1 Ci3 10th 8GB 256GB 14 Win10 Grey – 1 Year Warranty",
+          "price": 1099,
+          "discountPercentage": 11.83,
+          "rating": 4.54,
+          "stock": 96,
+          "brand": "Infinix",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/9/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/9/1.jpg",
+            "https://i.dummyjson.com/data/products/9/2.png",
+            "https://i.dummyjson.com/data/products/9/3.png",
+            "https://i.dummyjson.com/data/products/9/4.jpg",
+            "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
+          ],
+          "quantity": 4,
+          "user": 1,
+          "id": 1
+        },
+        {
+          "title": "Microsoft Surface Laptop 4",
+          "description": "Style and speed. Stand out on HD video calls backed by Studio Mics. Capture ideas on the vibrant touchscreen.",
+          "price": 1499,
+          "discountPercentage": 10.23,
+          "rating": 4.43,
+          "stock": 68,
+          "brand": "Microsoft Surface",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/8/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/8/1.jpg",
+            "https://i.dummyjson.com/data/products/8/2.jpg",
+            "https://i.dummyjson.com/data/products/8/3.jpg",
+            "https://i.dummyjson.com/data/products/8/4.jpg",
+            "https://i.dummyjson.com/data/products/8/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 2
+        }
+      ],
+      "totalAmount": 5222,
+      "totalItems": 5,
+      "user": {
+        "email": "jay@gmail.com",
+        "password": "abc",
+        "role": "user",
+        "addresses": [
+          {
+            "name": "jay narayan",
+            "email": "jay@gmail.com",
+            "phone": "9876543210",
+            "street": "1100 D , North",
+            "city": "Singrauli",
+            "state": "Madhyapredesh",
+            "pinCode": "486886"
+          },
+          {
+            "name": "jay nrevetbvtgrbgbg",
+            "email": "admin@gmail.com",
+            "phone": "453453434564545",
+            "street": "fefefefev",
+            "city": "jhmujm",
+            "state": "mjuhmjh,",
+            "pinCode": "5654676"
+          },
+          {
+            "name": "tailwind",
+            "email": "tailwind@gmail.com",
+            "phone": "342234242",
+            "street": "11 b , north easte ",
+            "city": "metro",
+            "state": "politin",
+            "pinCode": "3423423"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "tailwind",
+        "email": "tailwind@gmail.com",
+        "phone": "342234242",
+        "street": "11 b , north easte ",
+        "city": "metro",
+        "state": "politin",
+        "pinCode": "3423423"
+      },
+      "status": "dispatched",
+      "id": 4
     }
   ]
 }

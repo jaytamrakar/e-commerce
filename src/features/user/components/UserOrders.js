@@ -5,6 +5,7 @@ import {
   selectUserInfo,
   selectUserOrder,
 } from "../userSlice";
+import { discountedPrice } from "../../../app/constants";
 
 export default function UserOrders() {
   const user = useSelector(selectUserInfo);
@@ -19,7 +20,7 @@ export default function UserOrders() {
   return (
     <>
       <div>
-        {orders.map((order, index) => (
+        {orders?.map((order, index) => (
           <div
             key={index}
             className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8"
@@ -50,7 +51,8 @@ export default function UserOrders() {
                             <h3>
                               <a href={item.href}>{item.title}</a>
                             </h3>
-                            <p className="ml-4">${item.price}</p>
+                            <p className="ml-4 line-through">${item.price}</p>
+                            <p className="ml-4">${discountedPrice(item)}</p>
                           </div>
                           <p className="mt-1 text-sm text-gray-500">
                             {item.brand}
