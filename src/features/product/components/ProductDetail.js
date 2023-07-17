@@ -2,11 +2,17 @@ import { useEffect, useState } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductByIdAsync, selectProductById } from "../productSlice";
+import {
+  fetchProductByIdAsync,
+  selectProductById,
+  selectProductListStatus,
+} from "../productSlice";
 import { useParams } from "react-router-dom";
 import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { selectLoggedInUser } from "../../auth/authSlice";
 import { discountedPrice } from "../../../app/constants";
+import { toast } from "react-hot-toast";
+import { Grid } from "react-loader-spinner";
 
 // TODO: in the server data we will add colors and sizes to the product
 const colors = [
@@ -41,6 +47,8 @@ export default function ProductDetail() {
   const user = useSelector(selectLoggedInUser);
   const product = useSelector(selectProductById);
   const items = useSelector(selectItems);
+  const status = useSelector(selectProductListStatus);
+
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -55,8 +63,10 @@ export default function ProductDetail() {
       };
       delete newItem["id"];
       dispatch(addToCartAsync(newItem));
+      toast.success("Added to cart");
+      // TODO it will be based on the server response
     } else {
-      console.log("already added");
+      toast.error("already added");
     }
   };
 
@@ -66,6 +76,18 @@ export default function ProductDetail() {
 
   return (
     <div className="bg-white">
+      {status === "loading" ? (
+        <Grid
+          height="80"
+          width="80"
+          color="rgb(79,70,229)"
+          ariaLabel="grid-loading"
+          radius="12.5"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={true}
+        />
+      ) : null}
       {product && (
         <div className="pt-6">
           <nav aria-label="Breadcrumb">

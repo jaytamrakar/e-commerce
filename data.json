@@ -37,7 +37,8 @@
         "https://i.dummyjson.com/data/products/2/3.jpg",
         "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
         "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": 3,
@@ -52,7 +53,8 @@
       "thumbnail": "https://i.dummyjson.com/data/products/3/thumbnail.jpg",
       "images": [
         "https://i.dummyjson.com/data/products/3/1.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": 4,
@@ -88,7 +90,8 @@
         "https://i.dummyjson.com/data/products/5/1.jpg",
         "https://i.dummyjson.com/data/products/5/2.jpg",
         "https://i.dummyjson.com/data/products/5/3.jpg"
-      ]
+      ],
+      "deleted": true
     },
     {
       "id": 6,
