@@ -132,12 +132,12 @@ const AdminOrders = () => {
                             <div className="mr-2">
                               <img
                                 className="w-20 h-20 rounded-full"
-                                src={item.thumbnail}
+                                src={item.product.thumbnail}
                               />
                             </div>
                             <span>
-                              {item.title} - #{item.quantity} - $
-                              {discountedPrice(item)}
+                              {item.product.title} - #{item.quantity} - $
+                              {discountedPrice(item.product)}
                             </span>
                           </div>
                         ))}
