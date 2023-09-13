@@ -33,7 +33,7 @@ export const checkAuthAsync = createAsyncThunk("user/checkAuth", async () => {
     const response = await checkAuth();
     return response.data;
   } catch (error) {
-    return response.error; //this is my error return from checkAuth
+    console.log(error);
   }
 });
 

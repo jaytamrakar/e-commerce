@@ -27,7 +27,7 @@ export function checkAuth() {
     } catch (error) {
       reject(error);
     }
-    // TODO : on server it will return only some relevant data not password
+    // TODO: on server it will only return some info of user (not password)
   });
 }
 export function loginUser(loginInfo) {

@@ -162,7 +162,7 @@ function App() {
 
   useEffect(() => {
     dispatch(checkAuthAsync());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (user) {
