@@ -17,7 +17,6 @@ export default function Cart() {
 
   const [openModal, setOpenModal] = useState(null);
   const status = useSelector(selectCartStatus);
-
   const totalAmount = items.reduce(
     (ammount, item) => discountedPrice(item.product) * item.quantity + ammount,
     0
