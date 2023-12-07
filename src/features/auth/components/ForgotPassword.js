@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
@@ -9,9 +8,11 @@ const ForgotPassword = () => {
     formState: { errors },
   } = useForm();
 
+  // console.log(errors);
+
   const onSubmit = (data) => {
-    console.log(data);
-    // TODO : Implementation on the backend
+    // console.log(data);
+    // TODO : implementation on backend with email
   };
 
   return (
@@ -24,7 +25,7 @@ const ForgotPassword = () => {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Enter email to reset your password
+            Enter email to reset password
           </h2>
         </div>
 
@@ -48,7 +49,7 @@ const ForgotPassword = () => {
                     required: "email is required",
                     pattern: {
                       value: /\b[\w-]+@[\w-]+\w{2,4}\b/gi,
-                      message: "Please enter a valid email",
+                      message: "email not valid",
                     },
                   })}
                   type="email"

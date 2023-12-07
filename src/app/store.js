@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import productReducer from "../features/product/productSlice";
 import authReducer from "../features/auth/authSlice";
 import cartReducer from "../features/cart/cartSlice";
-import ordeReducer from "../features/order/orderSlice";
+import orderReducer from "../features/order/orderSlice";
 import userReducer from "../features/user/userSlice";
 
 export const store = configureStore({
@@ -10,7 +10,7 @@ export const store = configureStore({
     product: productReducer,
     auth: authReducer,
     cart: cartReducer,
-    order: ordeReducer,
+    order: orderReducer,
     user: userReducer,
   },
 });

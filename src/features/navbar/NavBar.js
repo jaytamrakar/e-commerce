@@ -1,4 +1,3 @@
-import React from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import {
@@ -16,7 +15,6 @@ const navigation = [
   { name: "Products", link: "/admin", admin: true },
   { name: "Orders", link: "/admin/orders", admin: true },
 ];
-
 const userNavigation = [
   { name: "My Profile", link: "/profile" },
   { name: "My Orders", link: "/orders" },
@@ -29,7 +27,7 @@ function classNames(...classes) {
 const NavBar = ({ children }) => {
   const items = useSelector(selectItems);
   const userInfo = useSelector(selectUserInfo);
-  console.log(userInfo);
+  // console.log(userInfo);
 
   return (
     <>
@@ -52,10 +50,10 @@ const NavBar = ({ children }) => {
                       </div>
                       <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">
-                          {navigation.map((item, index) =>
+                          {navigation.map((item) =>
                             item[userInfo.role] ? (
                               <Link
-                                key={index}
+                                key={item.name}
                                 to={item.link}
                                 className={classNames(
                                   item.current
@@ -87,7 +85,7 @@ const NavBar = ({ children }) => {
                           </button>
                         </Link>
                         {items.length > 0 && (
-                          <span className="inline-flex items-center rounded-md mb-5 -ml-3 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                          <span className="inline-flex items-center rounded-md mb-7 -ml-3 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                             {items.length}
                           </span>
                         )}
@@ -114,8 +112,8 @@ const NavBar = ({ children }) => {
                             leaveTo="transform opacity-0 scale-95"
                           >
                             <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                              {userNavigation.map((item, index) => (
-                                <Menu.Item key={index}>
+                              {userNavigation.map((item) => (
+                                <Menu.Item key={item.name}>
                                   {({ active }) => (
                                     <Link
                                       to={item.link}
@@ -156,8 +154,8 @@ const NavBar = ({ children }) => {
 
                 <Disclosure.Panel className="md:hidden">
                   <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-                    {navigation.map((item, index) => (
-                      <Disclosure.Button key={index}>
+                    {navigation.map((item) => (
+                      <Disclosure.Button key={item.name}>
                         {item[userInfo.role] ? (
                           <Link
                             to={item.link}
@@ -205,14 +203,14 @@ const NavBar = ({ children }) => {
                         </button>
                       </Link>
                       {items.length > 0 && (
-                        <span className="inline-flex items-center rounded-md mb-5 -ml-3 bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
+                        <span className="inline-flex items-center rounded-md bg-red-50 mb-7 -ml-3 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10">
                           {items.length}
                         </span>
                       )}
                     </div>
                     <div className="mt-3 space-y-1 px-2">
-                      {userNavigation.map((item, index) => (
-                        <Link to={item.link} key={index}>
+                      {userNavigation.map((item) => (
+                        <Link to={item.link} key={item.name}>
                           <Disclosure.Button className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white">
                             {item.name}
                           </Disclosure.Button>

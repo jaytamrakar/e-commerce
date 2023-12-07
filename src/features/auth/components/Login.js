@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { loginUserAsync, selectError, selectLoggedInUser } from "../authSlice";
 import { Link, Navigate } from "react-router-dom";
@@ -8,7 +7,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const error = useSelector(selectError);
   const user = useSelector(selectLoggedInUser);
-
   const {
     register,
     handleSubmit,
@@ -30,7 +28,7 @@ const Login = () => {
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-            Login to your account
+            Log in to your account
           </h2>
         </div>
 
@@ -54,7 +52,7 @@ const Login = () => {
                     required: "email is required",
                     pattern: {
                       value: /\b[\w-]+@[\w-]+\w{2,4}\b/gi,
-                      message: "Please enter a valid email",
+                      message: "email not valid",
                     },
                   })}
                   type="email"
@@ -106,7 +104,7 @@ const Login = () => {
                 type="submit"
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
-                Login
+                Log in
               </button>
             </div>
           </form>
@@ -117,7 +115,7 @@ const Login = () => {
               to="/signup"
               className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
             >
-              Create an account
+              Create an Account
             </Link>
           </p>
         </div>

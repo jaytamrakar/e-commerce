@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import { useParams } from "react-router-dom";
 import { addToCartAsync } from "../../cart/cartSlice";
 import { discountedPrice } from "../../../app/constants";
 
-// TODO: in the server data we will add colors and sizes to the product
+// TODO: In server data we will add colors, sizes , highlights. to each product
 const colors = [
   { name: "White", class: "bg-white", selectedClass: "ring-gray-400" },
   { name: "Gray", class: "bg-gray-200", selectedClass: "ring-gray-400" },
@@ -37,12 +37,14 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
+// TODO : Loading UI
+
 export default function AdminProductDetail() {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [selectedSize, setSelectedSize] = useState(sizes[2]);
   const product = useSelector(selectProductById);
-  const params = useParams();
   const dispatch = useDispatch();
+  const params = useParams();
 
   const handleCart = (e) => {
     e.preventDefault();
@@ -62,8 +64,8 @@ export default function AdminProductDetail() {
           <nav aria-label="Breadcrumb">
             <ol className="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
               {product.breadcrumbs &&
-                product.breadcrumbs.map((breadcrumb, index) => (
-                  <li key={index}>
+                product.breadcrumbs.map((breadcrumb) => (
+                  <li key={breadcrumb.id}>
                     <div className="flex items-center">
                       <a
                         href={breadcrumb.href}
@@ -153,9 +155,9 @@ export default function AdminProductDetail() {
                 <h3 className="sr-only">Reviews</h3>
                 <div className="flex items-center">
                   <div className="flex items-center">
-                    {[0, 1, 2, 3, 4].map((rating, index) => (
+                    {[0, 1, 2, 3, 4].map((rating) => (
                       <StarIcon
-                        key={index}
+                        key={rating}
                         className={classNames(
                           product.rating > rating
                             ? "text-gray-900"
@@ -184,9 +186,9 @@ export default function AdminProductDetail() {
                       Choose a color
                     </RadioGroup.Label>
                     <div className="flex items-center space-x-3">
-                      {colors.map((color, index) => (
+                      {colors.map((color) => (
                         <RadioGroup.Option
-                          key={index}
+                          key={color.name}
                           value={color}
                           className={({ active, checked }) =>
                             classNames(
@@ -231,9 +233,9 @@ export default function AdminProductDetail() {
                       Choose a size
                     </RadioGroup.Label>
                     <div className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                      {sizes.map((size, index) => (
+                      {sizes.map((size) => (
                         <RadioGroup.Option
-                          key={index}
+                          key={size.name}
                           value={size}
                           disabled={!size.inStock}
                           className={({ active }) =>
@@ -320,8 +322,8 @@ export default function AdminProductDetail() {
 
                 <div className="mt-4">
                   <ul className="list-disc space-y-2 pl-4 text-sm">
-                    {highlights.map((highlight, index) => (
-                      <li key={index} className="text-gray-400">
+                    {highlights.map((highlight) => (
+                      <li key={highlight} className="text-gray-400">
                         <span className="text-gray-600">{highlight}</span>
                       </li>
                     ))}

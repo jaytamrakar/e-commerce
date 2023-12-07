@@ -7,13 +7,15 @@ import {
 
 const initialState = {
   status: "idle",
-  userInfo: null, // This info will be used in case of detailed user info , while auth will only be userd for logged in users id checked out.
+  userInfo: null, // this info will be used in case of detailed user info, while auth will
+  // only be used for loggedInUser id etc checks
 };
 
-export const fetchLoggedInUserOrdersAsync = createAsyncThunk(
-  "order/fetchLoggedInUserOrders",
+export const fetchLoggedInUserOrderAsync = createAsyncThunk(
+  "user/fetchLoggedInUserOrders",
   async () => {
     const response = await fetchLoggedInUserOrders();
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -22,6 +24,7 @@ export const fetchLoggedInUserAsync = createAsyncThunk(
   "user/fetchLoggedInUser",
   async () => {
     const response = await fetchLoggedInUser();
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -29,7 +32,9 @@ export const fetchLoggedInUserAsync = createAsyncThunk(
 export const updateUserAsync = createAsyncThunk(
   "user/updateUser",
   async (update) => {
+    // this is name mistake
     const response = await updateUser(update);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -37,18 +42,13 @@ export const updateUserAsync = createAsyncThunk(
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-  },
-
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchLoggedInUserOrdersAsync.pending, (state) => {
+      .addCase(fetchLoggedInUserOrderAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchLoggedInUserOrdersAsync.fulfilled, (state, action) => {
+      .addCase(fetchLoggedInUserOrderAsync.fulfilled, (state, action) => {
         state.status = "idle";
         // this information is diffrent form logged in user or more than the priviours information
         state.userInfo.orders = action.payload;
@@ -58,6 +58,7 @@ export const userSlice = createSlice({
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
+        // earlier there was loggedInUser variable in other slice
         state.userInfo = action.payload;
       })
       .addCase(fetchLoggedInUserAsync.pending, (state) => {
@@ -65,12 +66,14 @@ export const userSlice = createSlice({
       })
       .addCase(fetchLoggedInUserAsync.fulfilled, (state, action) => {
         state.status = "idle";
+        // this info can be different or more from logged-in User info
         state.userInfo = action.payload;
       });
   },
 });
 
-export const selectUserOrder = (state) => state.user.userInfo.orders;
+// TODO: change orders and address to be independent of user;
+export const selectUserOrders = (state) => state.user.userInfo.orders;
 export const selectUserInfo = (state) => state.user.userInfo;
 export const selectUserInfoStatus = (state) => state.user.status;
 

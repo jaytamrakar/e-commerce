@@ -5,22 +5,23 @@ const initialState = {
   orders: [],
   status: "idle",
   currentOrder: null,
-  totalOrders: [],
+  totalOrders: 0,
 };
-// We may need more info or current order status
+//we may need more info of current order
 
 export const createOrderAsync = createAsyncThunk(
   "order/createOrder",
-  async (pagination) => {
-    const response = await createOrder(pagination);
+  async (order) => {
+    const response = await createOrder(order);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
-
 export const updateOrderAsync = createAsyncThunk(
   "order/updateOrder",
   async (order) => {
     const response = await updateOrder(order);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -29,6 +30,7 @@ export const fetchAllOrdersAsync = createAsyncThunk(
   "order/fetchAllOrders",
   async ({ sort, pagination }) => {
     const response = await fetchAllOrders(sort, pagination);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -41,7 +43,6 @@ export const orderSlice = createSlice({
       state.currentOrder = null;
     },
   },
-
   extraReducers: (builder) => {
     builder
       .addCase(createOrderAsync.pending, (state) => {

@@ -1,7 +1,5 @@
-import React from "react";
-import NavBar from "../features/navbar/NavBar";
 import ProductForm from "../features/admin/components/ProductForm";
-
+import NavBar from "../features/navbar/NavBar";
 const AdminProductFormPage = () => {
   return (
     <div>

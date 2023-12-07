@@ -1,10 +1,8 @@
-import React from "react";
-import { ITEMS_PER_PAGE } from "../../app/constants";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { ITEMS_PER_PAGE } from "../../app/constants";
 
 const Pagination = ({ page, setPage, handlePage, totalItems }) => {
   const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
-
   return (
     <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
       <div className="flex flex-1 justify-between sm:hidden">
@@ -56,7 +54,7 @@ const Pagination = ({ page, setPage, handlePage, totalItems }) => {
                 key={index}
                 onClick={(e) => handlePage(index + 1)}
                 aria-current="page"
-                className={`relative z-10 inline-flex items-center cursor-pointer ${
+                className={`relative cursor-pointer z-10 inline-flex items-center ${
                   index + 1 === page
                     ? "bg-indigo-600 text-white"
                     : "text-gray-400"

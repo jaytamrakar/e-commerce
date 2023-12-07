@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteItemFromCartAsync,
@@ -13,15 +13,15 @@ import { Grid } from "react-loader-spinner";
 import Modal from "../common/Modal";
 
 export default function Cart() {
-  const items = useSelector(selectItems);
-  const cartLoaded = useSelector(selectCartLoaded);
-
   const dispatch = useDispatch();
 
-  const [openModal, setOpenModal] = useState(null);
+  const items = useSelector(selectItems);
   const status = useSelector(selectCartStatus);
+  const cartLoaded = useSelector(selectCartLoaded);
+  const [openModal, setOpenModal] = useState(null);
+
   const totalAmount = items.reduce(
-    (ammount, item) => discountedPrice(item.product) * item.quantity + ammount,
+    (amount, item) => discountedPrice(item.product) * item.quantity + amount,
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
@@ -43,13 +43,12 @@ export default function Cart() {
           <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900 ">
             Cart
           </h1>
-
           <div className="flow-root">
             {status === "loading" ? (
               <Grid
                 height="80"
                 width="80"
-                color="rgb(79,70,229)"
+                color="rgb(79, 70, 229) "
                 ariaLabel="grid-loading"
                 radius="12.5"
                 wrapperStyle={{}}
@@ -57,10 +56,9 @@ export default function Cart() {
                 visible={true}
               />
             ) : null}
-
             <ul className="-my-6 divide-y divide-gray-200">
-              {items.map((item, index) => (
-                <li key={index} className="flex py-6">
+              {items.map((item) => (
+                <li key={item.id} className="flex py-6">
                   <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                     <img
                       src={item.product.thumbnail}
@@ -75,9 +73,6 @@ export default function Cart() {
                         <h3>
                           <a href={item.product.id}>{item.product.title}</a>
                         </h3>
-                        <p className="ml-4 line-through">
-                          ${item.product.price}
-                        </p>
                         <p className="ml-4">${discountedPrice(item.product)}</p>
                       </div>
                       <p className="mt-1 text-sm text-gray-500">
@@ -96,7 +91,6 @@ export default function Cart() {
                         <select
                           onChange={(e) => handleQuantity(e, item)}
                           value={item.quantity}
-                          className=""
                         >
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -114,16 +108,18 @@ export default function Cart() {
                       <div className="flex">
                         <Modal
                           title={`Delete ${item.product.title} `}
-                          message="Are you sure, you want to delete this cart item?"
+                          message="Are you sure you want to delete this Cart item ?"
                           dangerOption="Delete"
-                          cancleOption="Cancle"
+                          cancelOption="Cancel"
                           dangerAction={(e) => handleRemove(e, item.id)}
-                          cancleAction={() => setOpenModal(null)}
+                          cancelAction={() => setOpenModal(null)}
                           showModal={openModal === item.id}
                         />
                         <button
+                          onClick={(e) => {
+                            setOpenModal(item.id);
+                          }}
                           type="button"
-                          onClick={(e) => setOpenModal(item.id)}
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >
                           Remove

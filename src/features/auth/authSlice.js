@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { loginUser, checkAuth, createUser, signOut } from "./authAPI";
+import { loginUser, createUser, signOut, checkAuth } from "./authAPI";
 
 const initialState = {
-  loggedInUserToken: null,
+  loggedInUserToken: null, // this should only contain user identity => 'id'/'role'
   status: "idle",
   error: null,
   userChecked: false,
@@ -12,6 +12,7 @@ export const createUserAsync = createAsyncThunk(
   "user/createUser",
   async (userData) => {
     const response = await createUser(userData);
+    // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
 );
@@ -23,6 +24,7 @@ export const loginUserAsync = createAsyncThunk(
       const response = await loginUser(loginInfo);
       return response.data;
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error);
     }
   }
@@ -37,20 +39,19 @@ export const checkAuthAsync = createAsyncThunk("user/checkAuth", async () => {
   }
 });
 
-export const signOutAsync = createAsyncThunk("user/signOut", async (userId) => {
-  const response = await signOut(userId);
-  return response.data;
-});
+export const signOutAsync = createAsyncThunk(
+  "user/signOut",
+  async (loginInfo) => {
+    const response = await signOut(loginInfo);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
 
 export const authSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    increment: (state) => {
-      state.value += 1;
-    },
-  },
-
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(createUserAsync.pending, (state) => {
@@ -96,7 +97,5 @@ export const authSlice = createSlice({
 export const selectLoggedInUser = (state) => state.auth.loggedInUserToken;
 export const selectError = (state) => state.auth.error;
 export const selectUserChecked = (state) => state.auth.userChecked;
-
-export const { increment } = authSlice.actions;
 
 export default authSlice.reducer;
